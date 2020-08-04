@@ -2,7 +2,7 @@
 
 Class for i18n traduction with CodeIgniter 3
 
-With this class, you will be able to translate your site with CodeIgniter 3 in all the languages you want, you will also be able to add more quickly when you want.
+With this class, you will be able to translate your site with CodeIgniter 3 in all the languages you want, you will also be able to add more languages faster.
 
 The system applies the default language of CodeIgniter if the visitor does not yet have a cookie, then the cookie is given priority.
 
