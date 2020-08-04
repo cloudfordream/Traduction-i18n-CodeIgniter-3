@@ -1,4 +1,4 @@
->,php
+<?php
 
 $config['language']	= 'english';
 
@@ -8,8 +8,7 @@ $config['language_abbr'] = "en";
 /* set available language abbreviations */
 $config['lang_available'] = [
     'fr' => 'french',
-    'en' => 'english',
-    'ru' => 'russian'
+    'en' => 'english'
 ];
 
 /* ignore uri list */
