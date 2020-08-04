@@ -1,7 +1,6 @@
 # Traduction-i18n-CodeIgniter-3
-Class for i18n traduction with CodeIgniter 3
 
-# #
+Class for i18n traduction with CodeIgniter 3
 
 With this class, you will be able to translate your site with CodeIgniter 3 in all the languages you want, you will also be able to add more quickly when you want.
 
@@ -11,11 +10,11 @@ If an unsupported language is typed in the url by the visitor he will be automat
 
 If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he will be redirected in the language of his cookie or the default language of CodeIgniter if no cookie is present.
 
-# Future improvement : #
+# Future improvement :
 
 - Support for visitor's browser language.
 
-# #
+# How to setup
 
 - Take the contents of the files present in */application/config* and add it to your configuration files.
 - Take the following files and import them into your FTP:
