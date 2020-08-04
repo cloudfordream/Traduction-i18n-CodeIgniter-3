@@ -19,6 +19,6 @@ If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he
   - *application/language/english/welcome_lang.php*
   - *application/language/french/welcome_lang.php*
   
-# Future improvement :
+# Future improvement
 
 - Support for visitor's browser language.
