@@ -10,10 +10,6 @@ If an unsupported language is typed in the url by the visitor he will be automat
 
 If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he will be redirected in the language of his cookie or the default language of CodeIgniter if no cookie is present.
 
-# Future improvement :
-
-- Support for visitor's browser language.
-
 # How to setup
 
 - Take the contents of the files present in */application/config* and add it to your configuration files.
@@ -22,3 +18,7 @@ If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he
   - *application/core/MY_Lang.php*
   - *application/language/english/welcome_lang.php*
   - *application/language/french/welcome_lang.php*
+  
+# Future improvement :
+
+- Support for visitor's browser language.
