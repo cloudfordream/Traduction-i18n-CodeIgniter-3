@@ -26,23 +26,24 @@ class MY_Lang extends CI_Lang
         $this->lang_uri_ignore = $this->config['lang_uri_ignore'];
         $this->uri_abbr        = (strlen($URI->segment(1)) === 2) ? $URI->segment(1) : NULL;
 
-        /* determine lang */
-        if(empty($IN->cookie('user_lang', TRUE))){
-            if(isset($this->lang_available[substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)])){
-                $this->default_lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-            }else{
-                $this->default_lang = $this->default_abbr;
-            }
-        }else{
-            if(!array_key_exists($this->uri_abbr, $this->lang_available)){
-                $this->default_lang = $this->default_abbr;
-            }else{
-                $this->default_lang = $IN->cookie('user_lang', TRUE);
-            }
-        }
-
         /* control if uri isn't in lang_uri_ignore */
-        if(!in_array($this->default_lang, $this->lang_uri_ignore, TRUE)){
+        if(!in_array($URI->segment(1), $this->lang_uri_ignore, TRUE)){
+
+            /* determine lang */
+            if(empty($IN->cookie('user_lang', TRUE))){
+                if(isset($this->lang_available[substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)])){
+                    $this->default_lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+                }else{
+                    $this->default_lang = $this->default_abbr;
+                }
+            }else{
+                if(!isset($this->lang_available[$IN->cookie('user_lang', TRUE)])){
+                    $this->default_lang = $this->default_abbr;
+                }else{
+                    $this->default_lang = $IN->cookie('user_lang', TRUE);
+                }
+            }
+
             /* control if lang is not set in url */
             if(empty($this->uri_abbr)){
                 /* set lang in uri */    
@@ -56,7 +57,7 @@ class MY_Lang extends CI_Lang
                 exit();
             }else{
                 /* if lang is not available */
-                if(!array_key_exists($this->uri_abbr, $this->lang_available)){
+                if(!isset($this->lang_available[$this->uri_abbr])){
                     $URI->uri_string = preg_replace('/^\/?' . $this->uri_abbr . '/', $this->default_lang, $URI->uri_string);
 
                     $this->set_lang($this->default_lang);
@@ -69,10 +70,12 @@ class MY_Lang extends CI_Lang
                     $this->set_lang($this->uri_abbr);
                 }
             }
+        }else{
+
         }
 
         log_message('debug', "Language_Identifier Class Initialized");
-
+        
         /* control if lang is set in url and end slash is set */
         if(strlen($this->uri_abbr) === 2 AND empty($URI->segment(2)) AND substr($IN->server('REQUEST_URI'), -1) !== '/'){
             /* redirect */
