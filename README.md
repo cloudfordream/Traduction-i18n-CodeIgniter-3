@@ -10,7 +10,7 @@ If an unsupported language is typed in the url by the visitor he will be automat
 
 If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he will be redirected in the language of his cookie or the default language of CodeIgniter if no cookie is present.
 
-#f03c15 This class is not compatible if you use: $config['index_page']
+![#f03c15] This class is not compatible if you use: $config['index_page']
 
 # How to setup
 
