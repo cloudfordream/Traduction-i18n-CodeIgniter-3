@@ -63,7 +63,7 @@ class MY_Lang extends CI_Lang
                     $this->set_lang($this->default_lang);
 
                     /* redirect */
-                    header('Location: '.$this->config['base_url'].$this->lang_abbr.$URI->uri_string);
+                    header('Location: '.$this->config['base_url'].$URI->uri_string);
 
                     exit();
                 }else{
