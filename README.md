@@ -1,5 +1,7 @@
 # Traduction-i18n-CodeIgniter-3
 
+[![Github All Releases](https://img.shields.io/github/downloads/cloudfordream/Traduction-i18n-CodeIgniter-3/total)]()
+
 Class for i18n traduction with CodeIgniter 3
 
 With this class, you will be able to translate your site with CodeIgniter 3 in all the languages you want, you will also be able to add more languages faster.
