@@ -1,6 +1,6 @@
 # Traduction-i18n-CodeIgniter-3
 
-[![Github Downloads (total)](https://img.shields.io/github/downloads/cloudfordream/Traduction-i18n-CodeIgniter-3/total)]()
+[![Github Downloads](https://img.shields.io/github/downloads/cloudfordream/Traduction-i18n-CodeIgniter-3/total)]()
 
 Class for i18n traduction with CodeIgniter 3
 
