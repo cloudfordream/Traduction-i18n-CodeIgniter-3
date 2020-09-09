@@ -26,4 +26,4 @@ If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he
   
 # Future improvement
 
-Suggest me
+Suggest us
