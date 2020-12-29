@@ -12,6 +12,8 @@ class MY_Lang extends CI_Lang
 
     private $uri_abbr;
 
+    private $query_string;
+
     public function __construct()
     {
 
@@ -25,6 +27,7 @@ class MY_Lang extends CI_Lang
         $this->lang_available  = $this->config['lang_available'];
         $this->lang_uri_ignore = $this->config['lang_uri_ignore'];
         $this->uri_abbr        = (strlen($URI->segment(1)) === 2) ? $URI->segment(1) : NULL;
+        $this->query_string    = (!empty($IN->server('QUERY_STRING'))) ? '?' . $IN->server('QUERY_STRING') : NULL;
 
         /* control if uri isn't in lang_uri_ignore */
         if(!in_array($URI->segment(1), $this->lang_uri_ignore, TRUE)){
@@ -52,7 +55,7 @@ class MY_Lang extends CI_Lang
                 $this->set_lang($this->default_lang);
 
                 /* redirect */
-                header('Location: '.$this->config['base_url'].$this->lang_abbr.'/'.$URI->uri_string);
+                header('Location: '.$this->config['base_url'].$this->lang_abbr.'/'.$URI->uri_string.$this->query_string);
 
                 exit();
             }else{
@@ -63,23 +66,21 @@ class MY_Lang extends CI_Lang
                     $this->set_lang($this->default_lang);
 
                     /* redirect */
-                    header('Location: '.$this->config['base_url'].$URI->uri_string);
+                    header('Location: '.$this->config['base_url'].$URI->uri_string.$this->query_string);
 
                     exit();
                 }else{
                     $this->set_lang($this->uri_abbr);
                 }
             }
-        }else{
-
         }
 
         log_message('debug', "Language_Identifier Class Initialized");
         
         /* control if lang is set in url and end slash is set */
-        if(strlen($this->uri_abbr) === 2 AND empty($URI->segment(2)) AND substr($IN->server('REQUEST_URI'), -1) !== '/'){
+        if(strlen($this->uri_abbr) === 2 AND empty($URI->segment(2)) AND substr($IN->server('REQUEST_URI', TRUE), -1) !== '/'){
             /* redirect */
-            header('Location: '.$this->config['base_url'].$this->lang_abbr.$URI->uri_string.'/');
+            header('Location: '.$this->config['base_url'].$this->lang_abbr.$URI->uri_string.'/'.$this->query_string);
         }
     }
 
@@ -103,11 +104,15 @@ class MY_Lang extends CI_Lang
     }
 
     /* return url for anchor and switch lang */
-    public function switch_lang($lang)
+    public function switch_lang($lang, $uri = NULL)
     {
-        global $URI, $IN;
+        global $URI;
 
-        $URI->uri_string = preg_replace('/^\/?' . $this->uri_abbr . '/', $lang, $URI->uri_string);
+        if($uri){
+            $URI->uri_string = base_url() . $lang . '/' . $uri;
+        }else{
+            $URI->uri_string = preg_replace('/^\/?' . $this->uri_abbr . '/', $lang, $URI->uri_string);
+        }
 
         return $URI->uri_string;
     }
@@ -117,5 +122,24 @@ class MY_Lang extends CI_Lang
     {
         global $LANG;
         return ($t = $LANG->line($line)) ? $t : $line;
+    }
+    
+    public function u($line)
+    {
+        global $LANG;
+        return ($u = $LANG->line($line)) ? base_url() . $this->lang() . '/' . $u : $line;
+    }
+
+    public function u_list($name = NULL)
+    {
+        global $CFG;
+
+        foreach($CFG->config['lang_available'] as $lang_abbr => $lang_name){
+            require APPPATH . 'language/' . $lang_name . '/core/url_lang.php';
+
+            $return[$lang_abbr] = (!empty($lang[$name])) ? $lang[$name] : NULL;
+        }
+
+        return $return;
     }
 }
