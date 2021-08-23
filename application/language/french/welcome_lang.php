@@ -1,5 +1,5 @@
 <?php
 
-$lang['welcome'] = "Bonjour";
+$lang['welcome'] = 'Bonjour {pseudo}';
 
 ?>
