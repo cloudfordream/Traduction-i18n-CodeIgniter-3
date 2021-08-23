@@ -20,7 +20,7 @@ If the visitor arrives on the site with a languageless url (/fr/ or /en/ etc) he
   - *application/core/MY_Lang.php*
   - *application/language/english/welcome_lang.php*
   - *application/language/french/welcome_lang.php*
-  - *application/views/test.php*
+  - *application/views/welcome_message.php*
   
 # Future improvement
 
