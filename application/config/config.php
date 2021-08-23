@@ -1,20 +1,16 @@
 <?php
 
-$config['language']	= 'english';
+$config['language']	= 'french';
 
-/* default language abbreviation */
-$config['language_abbr'] = "en";
+$config['language_abbr'] = 'fr';
 
-/* set available language abbreviations */
-$config['lang_available'] = [
+$config['language_available'] = [
     'fr' => 'french',
     'en' => 'english'
 ];
 
-/* ignore uri list */
-$config['lang_uri_ignore'] = [
-    ''
+$config['language_uri_ignore'] = [
+    'sitemap.xml'
 ];
 
-/* time to store cookie lang */
-$config['lang_time'] = 2592000;
+$config['language_save_time'] = 2592000;
