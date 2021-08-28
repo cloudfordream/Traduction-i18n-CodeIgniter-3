@@ -302,7 +302,7 @@ class MY_Lang extends CI_Lang {
                     return isset($array[$name]) ? $array[$name] : $match;
                 }, base_url() . $language_abbr . '/' . $lang[$line]);
             }else{
-                $return[$language_abbr] = (!empty($lang[$name])) ? $lang[$name] : NULL;
+                $return[$language_abbr] = (!empty($lang[$line])) ? $lang[$line] : NULL;
             }
         }
 
